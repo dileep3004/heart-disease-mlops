@@ -1,0 +1,47 @@
+name: MLOps CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-train:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -e .
+      - name: Lint
+        run: ruff check src tests scripts
+      - name: Unit and API tests
+        run: pytest
+      - name: Download and prepare UCI dataset
+        run: python -m heart_mlops.data --output data/processed/heart_disease_clean.csv
+      - name: Generate EDA
+        run: python -m heart_mlops.eda --input data/processed/heart_disease_clean.csv --output reports/figures
+      - name: Train, evaluate, and track models
+        run: python -m heart_mlops.train --input data/processed/heart_disease_clean.csv --artifacts-dir artifacts --reports-dir reports --mlflow-dir mlruns
+      - name: Generate assignment report
+        run: python scripts/generate_report.py
+      - name: Upload pipeline artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: heart-disease-mlops-results
+          path: |
+            reports/**
+            artifacts/**
+            mlruns/**
+            data/processed/heart_disease_clean.csv
+          if-no-files-found: warn
+          retention-days: 14

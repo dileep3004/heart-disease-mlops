@@ -1,0 +1,17 @@
+flowchart LR
+  A[UCI Heart Disease archive] --> B[Download + clean script]
+  B --> C[Clean CSV + provenance manifest]
+  C --> D[EDA plots and summary]
+  C --> E[Train / CV grid search]
+  E --> F[MLflow tracking]
+  E --> G[Joblib model artifact]
+  G --> H[FastAPI /predict]
+  H --> I[Request logs + Prometheus metrics]
+  I --> J[Prometheus scrape]
+  J --> K[Grafana dashboard]
+  L[GitHub Actions] --> B
+  L --> D
+  L --> E
+  L --> M[Pytest + Ruff]
+  H --> N[Docker image]
+  N --> O[Docker Compose or Kubernetes]
