@@ -217,20 +217,16 @@ A cloud public endpoint requires suitable cloud infrastructure and may incur cha
 `.github/workflows/ci.yml` runs on pushes and pull requests: install, Ruff lint, pytest, official
 UCI acquisition, EDA, model tuning/tracking, and upload of reports/model artifacts. It fails on
 lint/test/training errors and uploads outputs for 14 days. GitHub Actions must be enabled in the
-repository; the screenshots in `screenshots/` should be captured after a real workflow succeeds.
 
 ## 10. Evidence, report, and video
 
-The assignment requires deployment screenshots and a short end-to-end video. Capture actual
-screens from your machine and save them in `screenshots/`: EDA, MLflow runs, Swagger prediction,
+Actual Running Screenshots can be seen here in `screenshots/`: EDA, MLflow runs, Swagger prediction,
 Docker containers, Prometheus target, Grafana dashboard, successful GitHub Action, and Kubernetes
-resources if you use Kubernetes. Record a 2-4 minute walkthrough: dataset and plots -> training
-and MLflow -> test run -> prediction -> dashboard -> deployment/CI evidence.
+resources if you use Kubernetes.
 
-The report generator is `scripts/generate_report.py`; run it again after training so it can read
-`reports/metrics.json` and insert the real values. The generated DOCX is written to
-`reports/MLOps_Assignment_01_Report.docx`; export it to PDF using Microsoft Word or LibreOffice if
-you need to refresh the submitted PDF after metrics are populated. Do not submit guessed performance numbers.
+
+Video: https://drive.google.com/file/d/1iz4v1glSiNL3mhgisnIm99jh02N5JP9l/view?usp=sharing
+
 
 ## API/schema note
 
