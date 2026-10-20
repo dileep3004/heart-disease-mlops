@@ -1,0 +1,167 @@
+{
+  "dataset_path": "data\\processed\\heart_disease_clean.csv",
+  "row_count": 303,
+  "feature_count": 13,
+  "feature_columns": [
+    "age",
+    "sex",
+    "cp",
+    "trestbps",
+    "chol",
+    "fbs",
+    "restecg",
+    "thalach",
+    "exang",
+    "oldpeak",
+    "slope",
+    "ca",
+    "thal"
+  ],
+  "target_mapping": {
+    "0": "absence",
+    "1": "presence"
+  },
+  "split": {
+    "test_size": 0.2,
+    "random_state": 42,
+    "stratified": true
+  },
+  "cross_validation": {
+    "folds": 5,
+    "shuffle": true,
+    "random_state": 42,
+    "selection_metric": "roc_auc"
+  },
+  "models": {
+    "LogisticRegression": {
+      "model_name": "LogisticRegression",
+      "best_params": {
+        "classifier__C": 0.1,
+        "classifier__class_weight": "balanced"
+      },
+      "best_cv_roc_auc": 0.9031400966183576,
+      "cv_summary": {
+        "cv_roc_auc_mean": 0.9031400966183576,
+        "cv_roc_auc_std": 0.0165772924030752,
+        "cv_accuracy_mean": 0.8304421768707483,
+        "cv_precision_mean": 0.8232210012210011,
+        "cv_recall_mean": 0.8098814229249012
+      },
+      "holdout_metrics": {
+        "accuracy": 0.8852459016393442,
+        "precision": 0.8387096774193549,
+        "recall": 0.9285714285714286,
+        "f1": 0.8813559322033898,
+        "roc_auc": 0.9664502164502164
+      },
+      "classification_report": {
+        "absence": {
+          "precision": 0.9333333333333333,
+          "recall": 0.8484848484848485,
+          "f1-score": 0.8888888888888888,
+          "support": 33.0
+        },
+        "presence": {
+          "precision": 0.8387096774193549,
+          "recall": 0.9285714285714286,
+          "f1-score": 0.8813559322033898,
+          "support": 28.0
+        },
+        "accuracy": 0.8852459016393442,
+        "macro avg": {
+          "precision": 0.886021505376344,
+          "recall": 0.8885281385281385,
+          "f1-score": 0.8851224105461393,
+          "support": 61.0
+        },
+        "weighted avg": {
+          "precision": 0.8898995240613432,
+          "recall": 0.8852459016393442,
+          "f1-score": 0.8854311382791517,
+          "support": 61.0
+        }
+      }
+    },
+    "RandomForest": {
+      "model_name": "RandomForest",
+      "best_params": {
+        "classifier__class_weight": null,
+        "classifier__max_depth": 6,
+        "classifier__min_samples_leaf": 3,
+        "classifier__n_estimators": 100
+      },
+      "best_cv_roc_auc": 0.9025686069164329,
+      "cv_summary": {
+        "cv_roc_auc_mean": 0.9025686069164329,
+        "cv_roc_auc_std": 0.03014628842958683,
+        "cv_accuracy_mean": 0.8177721088435372,
+        "cv_precision_mean": 0.825282913165266,
+        "cv_recall_mean": 0.7735177865612648
+      },
+      "holdout_metrics": {
+        "accuracy": 0.8688524590163934,
+        "precision": 0.8333333333333334,
+        "recall": 0.8928571428571429,
+        "f1": 0.8620689655172413,
+        "roc_auc": 0.9523809523809524
+      },
+      "classification_report": {
+        "absence": {
+          "precision": 0.9032258064516129,
+          "recall": 0.8484848484848485,
+          "f1-score": 0.875,
+          "support": 33.0
+        },
+        "presence": {
+          "precision": 0.8333333333333334,
+          "recall": 0.8928571428571429,
+          "f1-score": 0.8620689655172413,
+          "support": 28.0
+        },
+        "accuracy": 0.8688524590163934,
+        "macro avg": {
+          "precision": 0.8682795698924731,
+          "recall": 0.8706709956709957,
+          "f1-score": 0.8685344827586207,
+          "support": 61.0
+        },
+        "weighted avg": {
+          "precision": 0.8711440155120748,
+          "recall": 0.8688524590163934,
+          "f1-score": 0.8690644431882419,
+          "support": 61.0
+        }
+      }
+    }
+  },
+  "model_selection": [
+    {
+      "model_name": "LogisticRegression",
+      "cv_roc_auc_mean": 0.9031400966183576,
+      "cv_roc_auc_std": 0.0165772924030752,
+      "test_accuracy": 0.8852459016393442,
+      "test_precision": 0.8387096774193549,
+      "test_recall": 0.9285714285714286,
+      "test_f1": 0.8813559322033898,
+      "test_roc_auc": 0.9664502164502164,
+      "best_params": "{\"classifier__C\": 0.1, \"classifier__class_weight\": \"balanced\"}"
+    },
+    {
+      "model_name": "RandomForest",
+      "cv_roc_auc_mean": 0.9025686069164329,
+      "cv_roc_auc_std": 0.03014628842958683,
+      "test_accuracy": 0.8688524590163934,
+      "test_precision": 0.8333333333333334,
+      "test_recall": 0.8928571428571429,
+      "test_f1": 0.8620689655172413,
+      "test_roc_auc": 0.9523809523809524,
+      "best_params": "{\"classifier__class_weight\": null, \"classifier__max_depth\": 6, \"classifier__min_samples_leaf\": 3, \"classifier__n_estimators\": 100}"
+    }
+  ],
+  "selected_model": "LogisticRegression",
+  "selected_model_path": "models\\heart_disease_model.joblib",
+  "limitations": [
+    "Small historical dataset; results are not representative of modern clinical practice.",
+    "This educational model is not a medical device and must not be used for diagnosis or treatment."
+  ]
+}
